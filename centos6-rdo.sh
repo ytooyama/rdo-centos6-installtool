@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#RDO Install Assist v.140522-2000
+#RDO Install Assist v.140525-1845
 #
 yum install vim tracerourte system-config-firewall-tui system-config-network-tui
 
@@ -9,7 +9,7 @@ read -p "Do you want to Copy the sysctl.conf(y/n)?"
 [ "$REPLY" == "n" ] && Skipped!
 
 read -p "Do you want to Set SELinux(y/n)?"
-[ "$REPLY" == "y" ] && (vi /etc/selinux/config;setenforce 0)
+[ "$REPLY" == "y" ] && (sed -i -e s/^SELINUX=.*/SELINUX=permissive/ /etc/selinux/config;setenforce 0)
 [ "$REPLY" == "n" ] && Skipped!
 
 read -p "Set the Repo(havana/icehouse/skip)?"
