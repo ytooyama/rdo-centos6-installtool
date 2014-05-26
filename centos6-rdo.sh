@@ -9,12 +9,12 @@ tmp=`cat /etc/issue | head -n 1`
 DIST=`echo $tmp | awk '{print $1}'`
 
 if [[ $DIST =~ "CentOS" ]]; then
-  yum install vim tracerourte system-config-firewall-tui system-config-network-tui
+  yum install vim traceroute system-config-firewall-tui system-config-network-tui
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
   [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
   [ "$REPLY" == "n" ] && Skipped!
 elif [[ $DIST =~ "Fedora" ]]; then
-  yum install vim tracerourte system-config-network-tui
+  yum install vim traceroute system-config-network-tui
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
   [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
   [ "$REPLY" == "n" ] && Skipped!
