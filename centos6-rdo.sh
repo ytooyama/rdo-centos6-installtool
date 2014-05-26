@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#RDO Install Assist v.140526-1200
+#RDO Install Assist v.140526-1250
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -34,5 +34,5 @@ yum install -y openstack-packstack python-netaddr
 
 read -p "Do you want to Custom installation of RDO OpenStack(y/n)?"
 [ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;echo "Edit the answer.txt File,After that Run the packstack command.")
-[ "$REPLY" == "n" ] && (packstack --allinone;ln -s keystonerc_admin openrc)
+[ "$REPLY" == "n" ] && (packstack --allinone;ln -s /root/keystonerc_admin /root/openrc)
 
