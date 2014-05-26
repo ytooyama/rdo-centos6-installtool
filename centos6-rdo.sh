@@ -12,22 +12,22 @@ if [[ $DIST =~ "CentOS" ]]; then
   yum install vim traceroute system-config-firewall-tui system-config-network-tui
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
   [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
-  [ "$REPLY" == "n" ] && Skipped!
+  [ "$REPLY" == "n" ] && echo Skipped!
 elif [[ $DIST =~ "Fedora" ]]; then
   yum install vim traceroute system-config-network-tui
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
   [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
-  [ "$REPLY" == "n" ] && Skipped!
+  [ "$REPLY" == "n" ] && echo Skipped!
 fi
 
 read -p "Do you want to Set SELinux(y/n)?"
 [ "$REPLY" == "y" ] && (setenforce 0;sed -i -e s/^SELINUX=.*/SELINUX=permissive/ /etc/selinux/config)
-[ "$REPLY" == "n" ] && Skipped!
+[ "$REPLY" == "n" ] && echo Skipped!
 
 read -p "Set the Repo(havana/icehouse/skip)?"
 [ "$REPLY" == "havana" ] && yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm
 [ "$REPLY" == "icehouse" ] && yum install -y http://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm
-[ "$REPLY" == "skip" ] && Skipped!
+[ "$REPLY" == "skip" ] && echo Skipped!
 
 yum -y update
 yum install -y openstack-packstack python-netaddr
