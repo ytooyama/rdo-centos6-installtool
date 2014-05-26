@@ -1,4 +1,4 @@
-RDO-CentOS6-InstallTool
+RDO Install Assist Tool 
 ==========
 
 ###これはなに
@@ -8,9 +8,13 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 以下の環境で実行することを想定しています｡
 
 - CentOS 6.5
+- Fedora (Testing)
+  - havana = Fedora 19   
+  - icehouse = Fedora 20
+ 
 
 ###使いかた
-- CentOS 6.5をインストールしてyum updateを実施します。
+- OSをインストールしてyum updateを実施します。
 - リポジトリーからパッケージをダウンロードします｡
 - シェルスクリプトを実行可能にします｡
 
