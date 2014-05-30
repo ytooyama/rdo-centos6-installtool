@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#RDO Install Assist v.140526-1250
+#RDO Install Assist v.140530-1515
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -24,15 +24,4 @@ read -p "Do you want to Set SELinux(y/n)?"
 [ "$REPLY" == "y" ] && (setenforce 0;sed -i -e s/^SELINUX=.*/SELINUX=permissive/ /etc/selinux/config)
 [ "$REPLY" == "n" ] && echo Skipped!
 
-read -p "Set the Repo(havana/icehouse/skip)?"
-[ "$REPLY" == "havana" ] && yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm
-[ "$REPLY" == "icehouse" ] && yum install -y http://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm
-[ "$REPLY" == "skip" ] && echo Skipped!
-
 yum -y update
-yum install -y openstack-packstack python-netaddr
-
-read -p "Do you want to Custom installation of RDO OpenStack(y/n)?"
-[ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;echo "Edit the answer.txt File,After that Run the packstack command.")
-[ "$REPLY" == "n" ] && (packstack --allinone;ln -s /root/keystonerc_admin /root/openrc)
-

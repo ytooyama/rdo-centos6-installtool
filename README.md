@@ -1,4 +1,4 @@
-RDO Install Assist Tool 
+RDO Install Assist Tool
 ==========
 
 ###これはなに
@@ -8,26 +8,35 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 以下の環境で実行することを想定しています｡
 
 - CentOS 6.5
+  - havana
+  - icehouse
 - Fedora
-  - havana = Fedora 19 (Testing)
-  - icehouse = Fedora 20 
+  - icehouse = Fedora 20
 
 ###使いかた
 - OSをインストールしてyum updateを実施します。
+- IPアドレスを設定します｡
 - リポジトリーからパッケージをダウンロードします｡
 - シェルスクリプトを実行可能にします｡
 
 ```
-	chmod +x centos6-rdo.sh
+# chmod +x rdo-assist-srv.sh
+# chmod +x rdo-assist-cli.sh
 ```
 
-- シェルスクリプトを実行します｡
+- コントロールノード以外のノードでシェルスクリプトを実行します(単体構成時は不要)｡
 
 ```
-	./centos6-rdo.sh
+ # ./rdo-assist-cli.sh
 ```
 
-- 質問に答えます 
+- コントロールノードでシェルスクリプトを実行します｡
+
+```
+ # ./rdo-assist-srv.sh
+```
+
+- 質問に答えます
 
 ```
 	Do you want to Copy the sysctl.conf(y/n)?
@@ -44,7 +53,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - answer.txtに設定を書き込んだ後、以下のコマンドを実行する必要があります｡
 
 ```
-	packstack --answer-file=answer.txt
+ # packstack --answer-file=answer.txt
 ```
 
 - 複数台構成にする場合は、カーネルパラメーターの修正やSELinuxの修正、IPアドレスの設定は予め各ノードの設定を行ってからpackstackコマンドを実施してください。
