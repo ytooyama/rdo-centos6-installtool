@@ -17,6 +17,12 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - OSをインストールしてyum updateを実施します。
 - IPアドレスを設定します｡
 - リポジトリーからパッケージをダウンロードします｡
+
+```
+# git clone -b master https://github.com/ytooyama/rdo-centos6-installtool.git
+```
+-bオプションでバージョンを指定。最新版はmaster。
+
 - シェルスクリプトを実行可能にします｡
 
 ```
