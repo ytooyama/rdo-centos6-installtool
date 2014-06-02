@@ -16,6 +16,15 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 ###使いかた
 - OSをインストールしてyum updateを実施します。
 - IPアドレスを設定します｡
+- NetworkManagerを終了して、networkサービスを実行します｡
+
+```
+# service NetworkManager stop
+# service network start
+# chkconfig NetworkManager off
+# chkconfig network on
+```
+
 - リポジトリーからパッケージをダウンロードします｡
 
 ```
