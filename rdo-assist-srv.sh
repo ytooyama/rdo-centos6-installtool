@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#RDO Install Assist v.140530-1515
+#RDO Install Assist v.140604-950
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -14,7 +14,7 @@ if [[ $DIST =~ "CentOS" ]]; then
   [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
   [ "$REPLY" == "n" ] && echo Skipped!
 elif [[ $DIST =~ "Fedora" ]]; then
-  yum install vim traceroute system-config-network-tui
+  yum install vim net-tools traceroute system-config-network-tui
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
   [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
   [ "$REPLY" == "n" ] && echo Skipped!
