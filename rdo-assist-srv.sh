@@ -36,3 +36,23 @@ read -p "Do you want to Custom installation of RDO OpenStack(y/n)?"
 [ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;echo "Edit the answer.txt File,After that Run the packstack command.")
 [ "$REPLY" == "n" ] && (packstack --allinone;ln -s /root/keystonerc_admin /root/openrc)
 
+file1=/root/keystonerc_admin
+file2=/root/keystonerc_demo
+
+echo "Access the Horizon by Web Browser."
+
+if [ -e $file1 ]; then
+echo "The default users are: admin,Password is";
+cat /root/keystonerc_admin |grep OS_PASSWORD
+else
+echo "User admin is Not Found!"
+fi
+
+if [ -e $file2 ]; then
+echo "The default users are: demo,Password is";
+cat /root/keystonerc_demo |grep OS_PASSWORD
+else
+echo "User demo is Not Found!"
+fi
+
+echo "Finished!"
