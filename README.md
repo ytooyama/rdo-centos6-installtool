@@ -24,21 +24,6 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 # chkconfig NetworkManager off
 # chkconfig network on
 ```
-- Fedoraの場合はFirewalldを無効化してiptablesサービスを導入します｡
-
-```
-# systemctl disable firewalld
-# systemctl stop firewalld
-
-# yum install iptables-services
-
-# touch /etc/sysconfig/iptables
-# touch /etc/sysconfig/ip6tables
-# systemctl start iptables
-# systemctl start ip6tables
-# systemctl enable iptables
-# systemctl enable ip6tables
-```
 
 - リポジトリーからパッケージをダウンロードします｡
 
@@ -86,7 +71,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
  # packstack --answer-file=answer.txt
 ```
 
-- 複数台構成にする場合は、カーネルパラメーターの修正やSELinuxの修正、IPアドレスの設定は予め各ノードの設定が正しく行われているか確認してからpackstackコマンドを実施してください。
+- 複数台構成にする場合は、カーネルパラメーターやSELinuxの修正、IPアドレスの設定は予め各ノードの設定が正しく行われているか確認してからpackstackコマンドを実施してください。
 
 ###RDOってなに？
 
