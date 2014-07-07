@@ -29,11 +29,11 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 
 ```
 # service firewalld stop
+# yum install -y iptables-services
 # service iptables start
 # chkconfig firewalld off
 # chkconfig iptables on
 ```
-
 
 - リポジトリーからパッケージをダウンロードします｡
 
