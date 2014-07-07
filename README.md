@@ -25,7 +25,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 # chkconfig network on
 ```
 
--[Fedora] Firewalldを終了して、iptablesサービスを実行します（packstackスクリプトでエラーとなるため）。
+- Firewalldを終了して、iptablesサービスを実行します（packstackスクリプトでエラーとなるため）。
 
 ```
 # service firewalld stop
