@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#RDO Install Assist v.140707-1100
+#RDO Install Assist v.140709-0030
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -33,27 +33,16 @@ yum -y update
 yum install -y openstack-packstack python-netaddr
 
 read -p "Do you want to Custom installation of RDO OpenStack(y/n/exit)?"
-[ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;echo "Edit the answer.txt File,After that Run the packstack command.")
+[ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;echo "Edit the answer.txt File,After that Run the packstack and System Update.")
 [ "$REPLY" == "n" ] && (packstack --allinone;ln -s /root/keystonerc_admin /root/openrc)
 [ "$REPLY" == "exit" ] && exit 0
 
-file1=/root/keystonerc_admin
-file2=/root/keystonerc_demo
+tmp=`cat /etc/issue | head -n 1`
+DIST=`echo $tmp | awk '{print $1}'`
 
-echo "Access the Horizon by Web Browser."
-
-if [ -e $file1 ]; then
-echo "The default users are: admin,Password is";
-cat /root/keystonerc_admin |grep OS_PASSWORD
-else
-echo "User admin is Not Found!"
+if [[ $DIST =~ "CentOS" ]]; then
+    echo "Finished!"
+elif [[ $DIST =~ "Fedora" ]]; then
+    yum -y update
+    echo "Finished!"
 fi
-
-if [ -e $file2 ]; then
-echo "The default users are: demo,Password is";
-cat /root/keystonerc_demo |grep OS_PASSWORD
-else
-echo "User demo is Not Found!"
-fi
-
-echo "Finished!"
