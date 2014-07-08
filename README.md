@@ -24,16 +24,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 # chkconfig NetworkManager off
 # chkconfig network on
 ```
-
-- Firewalldを終了して、iptablesサービスを実行します（packstackスクリプトでエラーとなるため）。
-
-```
-# service firewalld stop
-# yum install -y iptables-services
-# service iptables start
-# chkconfig firewalld off
-# chkconfig iptables on
-```
+※Fedora 20ではNetworkManagerを使って構築したほうがうまくいくようです。
 
 - リポジトリーからパッケージをダウンロードします｡
 
