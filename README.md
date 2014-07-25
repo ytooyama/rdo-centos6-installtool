@@ -77,6 +77,11 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 
 - 複数台構成にする場合は、カーネルパラメーターやSELinuxの修正、IPアドレスの設定は予め各ノードの設定が正しく行われているか確認してからpackstackコマンドを実施してください。
 
+- スクリプトが終わったら、NICの設定とNeutron Networkの設定を行います。
+
+- <https://github.com/ytooyama/rdo-icehouse/blob/master/1-1-RDO-QuickStart-Local.md#step-7-ネットワーク設定の変更>
+- <https://github.com/ytooyama/rdo-icehouse/blob/master/2-RDO-QuickStart-Networking.md>
+
 ###RDOってなに？
 
 [公式サイト](http://jp-redhat.com/openstack/rdo/)をご覧ください。

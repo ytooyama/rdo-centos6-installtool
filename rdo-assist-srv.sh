@@ -46,7 +46,7 @@ read -p "Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?"
                            sed -i -e s/^CONFIG_PROVISION_DEMO=.*/CONFIG_PROVISION_DEMO=n/ answer.txt;
                            packstack --answer-file=answer.txt;
                            ln -s /root/keystonerc_admin /root/openrc;
-                           echo "Please,Make the Neutron Networks.See Docs! https://github.com/ytooyama/rdo-icehouse/blob/master/2-RDO-QuickStart-Networking.md"
+                           echo "Please,Make the Neutron Networks.See README.md! https://github.com/ytooyama/rdo-centos6-installtool"
                            )
 [ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;
                         echo "Edit the answer.txt File,After that Run the 'packstack --answer-file=answer.txt' and System Update.")
