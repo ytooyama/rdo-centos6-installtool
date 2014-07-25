@@ -10,8 +10,8 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - CentOS 6.5
   - havana
   - icehouse
-- Fedora
-  - icehouse = Fedora 20
+- Fedora 20
+  - icehouse
 
 ###使いかた
 - OSをインストールしてyum updateを実施します。
@@ -61,11 +61,14 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 	（SELinuxを設定変更するか）
 	Set the Repo(havana/icehouse/skip)?
 	（インストールするOpenStackのバージョンを指定）
-	Do you want to Custom installation of RDO OpenStack(y/n)?
+	Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?
 	（RDO OpenStackをカスタムインストールするか）
 ```
+- カスタムインストールをautoと入力すると適当なインストールが行われます｡
+- カスタムインストールをyと入力するとアンサーファイル(answer.txt)が作られます。
 - カスタムインストールをnと入力するとall-in-oneインストールが行われます｡
-- カスタムインストールを実行する場合、アンサーファイル(answer.txt)が作られてスクリプトは終了します｡
+- カスタムインストールをexitと入力するとpackstackコマンドを中止します。
+
 - answer.txtに設定を書き込んだ後、以下のコマンドを実行する必要があります｡
 
 ```
