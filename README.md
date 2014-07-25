@@ -64,7 +64,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 	Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?
 	（RDO OpenStackをカスタムインストールするか）
 ```
-- カスタムインストールをautoと入力すると適当なインストールが行われます｡
+- カスタムインストールをautoと入力すると適当なインストールが行われます｡シェルスクリプトを自由に編集して、アンサーファイルを書き換えてください。
 - カスタムインストールをyと入力するとアンサーファイル(answer.txt)が作られます。
 - カスタムインストールをnと入力するとall-in-oneインストールが行われます｡
 - カスタムインストールをexitと入力するとpackstackコマンドを中止します。
