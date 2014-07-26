@@ -29,7 +29,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - リポジトリーからパッケージをダウンロードします｡
 
 ```
-# git clone -b master https://github.com/ytooyama/rdo-centos6-installtool.git
+# git clone  -b  v2.0  https://github.com/ytooyama/rdo-centos6-installtool.git
 ```
 -bオプションでバージョンを指定。最新版はmaster。
 
