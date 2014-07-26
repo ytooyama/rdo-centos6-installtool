@@ -7,7 +7,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 ###環境について
 以下の環境で実行することを想定しています｡
 
-- CentOS 6.5
+- CentOS 6.4,6.5 or Scientific Linux 6.5
   - havana
   - icehouse
 - Fedora 20
