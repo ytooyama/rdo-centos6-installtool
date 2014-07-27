@@ -4,6 +4,10 @@ RDO Install Assist Tool
 ###これはなに
 RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順のコマンドを並べただけです｡
 
+###RDOってなに？
+
+[公式サイト](http://jp-redhat.com/openstack/rdo/)をご覧ください。
+
 ###環境について
 以下の環境で実行することを想定しています｡
 
@@ -69,19 +73,20 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - カスタムインストールをnと入力するとall-in-oneインストールが行われます｡
 - カスタムインストールをexitと入力するとpackstackコマンドを中止します。
 
-- answer.txtに設定を書き込んだ後、以下のコマンドを実行する必要があります｡
+- カスタムインストールで"y"を選択した場合は、answer.txtが生成されますので、
+設定を書き込んだ後、以下のコマンドを実行するとpackstackによるOpenStackコンポーネントのインストールを続行します。
 
 ```
  # packstack --answer-file=answer.txt
 ```
 
-- 複数台構成にする場合は、カーネルパラメーターやSELinuxの修正、IPアドレスの設定は予め各ノードの設定が正しく行われているか確認してからpackstackコマンドを実施してください。
-
 - スクリプトが終わったら、NICの設定とNeutron Networkの設定を行います。
+
+####Icehouseの場合
 
 - <https://github.com/ytooyama/rdo-icehouse/blob/master/1-1-RDO-QuickStart-Local.md#step-7-ネットワーク設定の変更>
 - <https://github.com/ytooyama/rdo-icehouse/blob/master/2-RDO-QuickStart-Networking.md>
 
-###RDOってなに？
+####Havana
 
-[公式サイト](http://jp-redhat.com/openstack/rdo/)をご覧ください。
+- <https://github.com/ytooyama/rdo-havana/blob/master/RDO-QuickStart-1.txt> など
