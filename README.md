@@ -11,7 +11,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 ###環境について
 以下の環境で実行することを想定しています｡
 
-- CentOS 6.4,6.5 or Scientific Linux 6.5
+- CentOS 6.4以降 or Scientific Linux 6.5
   - havana
   - icehouse
 - Fedora 20
@@ -68,13 +68,13 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 	Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?
 	（RDO OpenStackをカスタムインストールするか）
 ```
-- カスタムインストールをautoと入力すると適当なインストールが行われます｡シェルスクリプトを自由に編集して、アンサーファイルを書き換えてください。
-- カスタムインストールをyと入力するとアンサーファイル(answer.txt)が作られます。
-- カスタムインストールをnと入力するとall-in-oneインストールが行われます｡
-- カスタムインストールをexitと入力するとpackstackコマンドを中止します。
+- カスタムインストールを"auto"と入力すると自動インストールが行われます｡シェルスクリプトに追記すればその他の設定を書き換えてインストールすることができあｍす。
+- カスタムインストールを"y"と入力するとアンサーファイル(answer.txt)が作られます。
+- カスタムインストールを"n"と入力するとall-in-oneインストールが行われます｡
+- カスタムインストールを"exit"と入力するとpackstackコマンドを中止します。
 
-- カスタムインストールで"y"を選択した場合は、answer.txtが生成されますので、
-設定を書き込んだ後、以下のコマンドを実行するとpackstackによるOpenStackコンポーネントのインストールを続行します。
+- カスタムインストールで"y"を選択した場合はanswer.txtが生成されますので、
+設定を書き込んだ後に以下のコマンドを実行すると、packstackによるOpenStackコンポーネントのインストールを続行します。
 
 ```
  # packstack --answer-file=answer.txt
@@ -87,6 +87,6 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - <https://github.com/ytooyama/rdo-icehouse/blob/master/1-1-RDO-QuickStart-Local.md#step-7-ネットワーク設定の変更>
 - <https://github.com/ytooyama/rdo-icehouse/blob/master/2-RDO-QuickStart-Networking.md>
 
-####Havana
+####Havanaの場合
 
 - <https://github.com/ytooyama/rdo-havana/blob/master/RDO-QuickStart-1.txt> など
