@@ -67,14 +67,14 @@ read -p "Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?"
                            packstack --answer-file=answer.txt;
                            ln -s /root/keystonerc_admin /root/openrc;
                            echo "Please,Make the Neutron Networks.See README.md! https://github.com/ytooyama/rdo-centos6-installtool"
-                           #workaraund see https://github.com/openstack/neutron/commit/a7da625571a5acb161246e62713da81526a8d86b
+                           #Workaround see https://github.com/openstack/neutron/commit/a7da625571a5acb161246e62713da81526a8d86b
                            sed -i -e "s/# Example: mechanism drivers/# Example: mechanism_drivers/g" /etc/neutron/plugins/ml2/ml2_conf.ini
                            )
 [ "$REPLY" == "y" ] && (packstack --gen-answer-file=answer.txt;
                         echo "Edit the answer.txt File,After that Run the 'packstack --answer-file=answer.txt' and System Update.")
 [ "$REPLY" == "n" ] && (packstack --allinone;
                         ln -s /root/keystonerc_admin /root/openrc
-                        #workaraund see https://github.com/openstack/neutron/commit/a7da625571a5acb161246e62713da81526a8d86b
+                        #Workaround see https://github.com/openstack/neutron/commit/a7da625571a5acb161246e62713da81526a8d86b
                         sed -i -e "s/# Example: mechanism drivers/# Example: mechanism_drivers/g" /etc/neutron/plugins/ml2/ml2_conf.ini
                        )
 [ "$REPLY" == "exit" ] && exit 0
