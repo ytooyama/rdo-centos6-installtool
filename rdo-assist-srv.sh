@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#RDO Install Assist v.140726-1930
+#RDO Install Assist v.140728-2100
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -11,17 +11,13 @@ DIST=`echo $tmp`
 case $DIST in
 "CentOS release 6.4 (Final)"|"CentOS release 6.5 (Final)")
   echo "You use the CentOS 6.4 or 6.5."
-  echo "Please Use the kernel-2.6.32-358.123.2.openstack.el6,Because.This Kernel vxlan support!"
-  yum install https://repos.fedorapeople.org/repos/openstack/openstack-icehouse/epel-6/kernel-2.6.32-358.123.2.openstack.el6.x86_64.rpm
   yum install vim traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
 ;;
-"Scientific Linux release 6.5 (Carbon)")
-  echo "You use the Scientific 6.5."
-  echo "Please Use the kernel-2.6.32-358.123.2.openstack.el6,Because.This Kernel vxlan support!"
-  yum install https://repos.fedorapeople.org/repos/openstack/openstack-icehouse/epel-6/kernel-2.6.32-358.123.2.openstack.el6.x86_64.rpm
+"Scientific Linux release 6.4 (Carbon)"|"Scientific Linux release 6.5 (Carbon)")
+  echo "You use the Scientific 6.4 or 6.5."
   yum install vim traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
@@ -64,6 +60,12 @@ read -p "Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?"
                            sed -i -e s/^CONFIG_NOVA_NETWORK_PUBIF=.*/CONFIG_NOVA_NETWORK_PUBIF=eth0/ answer.txt;
                            sed -i -e s/^CONFIG_NOVA_NETWORK_PRIVIF=.*/CONFIG_NOVA_NETWORK_PRIVIF=eth1/ answer.txt;
                            sed -i -e s/^CONFIG_PROVISION_DEMO=.*/CONFIG_PROVISION_DEMO=n/ answer.txt;
+                           #if "all-in-one install" then set "local",else "Multi" then Comment Out.
+                           sed -i -e s/^CONFIG_NEUTRON_ML2_TYPE_DRIVERS=.*/CONFIG_NEUTRON_ML2_TYPE_DRIVERS=local/ answer.txt;
+                           sed -i -e s/^CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=.*/CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local/ answer.txt;
+                           sed -i -e s/^CONFIG_NEUTRON_LB_TENANT_NETWORK_TYPE=.*/CONFIG_NEUTRON_LB_TENANT_NETWORK_TYPE=local/ answer.txt;
+                           sed -i -e s/^CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=.*/CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=local/ answer.txt;
+                           #Run Packstack! 
                            packstack --answer-file=answer.txt;
                            ln -s /root/keystonerc_admin /root/openrc;
                            echo "Please,Make the Neutron Networks.See README.md! https://github.com/ytooyama/rdo-centos6-installtool"
