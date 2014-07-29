@@ -89,4 +89,5 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 
 ####Havanaの場合
 
-- <https://github.com/ytooyama/rdo-havana/blob/master/RDO-QuickStart-1.txt> など
+- <https://github.com/ytooyama/rdo-havana/blob/master/1-1-RDO-QuickStart-Local.md#step-7-ネットワーク設定の変更>
+- <https://github.com/ytooyama/rdo-havana/blob/master/2-RDO-QuickStart-Networking.md>
