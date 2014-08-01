@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#RDO Install Assist v.140730-2110
+#RDO Install Assist v.140801-1800
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -8,27 +8,49 @@
 tmp=`cat /etc/issue | head -n 1`
 DIST=`echo $tmp`
 
+function REPOSET
+{
+  read -p "Set the Repo(havana/icehouse/skip)?"
+  [ "$REPLY" == "havana" ]  &&  (yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm;
+    yum -y update;
+    yum install -y openstack-packstack python-netaddr)
+  [ "$REPLY" == "icehouse" ] && (yum install -y http://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm;
+    yum -y update;
+    yum install -y openstack-packstack python-netaddr)
+  [ "$REPLY" == "skip" ] && echo Skipped!
+}
+
 case $DIST in
 "CentOS release 6.4 (Final)"|"CentOS release 6.5 (Final)")
   echo "You use the CentOS 6.4 or 6.5."
-  yum install vim traceroute
+  yum install traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
+#read function
+REPOSET
 ;;
 "Scientific Linux release 6.4 (Carbon)"|"Scientific Linux release 6.5 (Carbon)")
   echo "You use the Scientific 6.4 or 6.5."
-  yum install vim traceroute
+  yum install traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
+#read function
+REPOSET
 ;;
 "Fedora release 20 (Heisenbug)")
   echo "You use the Fedora 20."
-  yum install vim net-tools traceroute
+  yum install net-tools traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
+
+  read -p "Set the Repo(icehouse/skip)?"
+    [ "$REPLY" == "icehouse" ] && (yum install -y http://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm;
+      yum -y update;
+      yum install -y openstack-packstack python-netaddr)
+    [ "$REPLY" == "skip" ] && echo Skipped!
 ;;
 *)
   echo "You use the Unsupported version."
@@ -40,16 +62,7 @@ read -p "Do you want to Set SELinux(y/n)?"
 [ "$REPLY" == "y" ] && (setenforce 0;sed -i -e s/^SELINUX=.*/SELINUX=permissive/ /etc/selinux/config)
 [ "$REPLY" == "n" ] && echo Skipped!
 
-read -p "Set the Repo(havana/icehouse/skip)?"
-[ "$REPLY" == "havana" ]  &&  (yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm;
-                               yum -y update;
-                               yum install -y openstack-packstack python-netaddr)
-[ "$REPLY" == "icehouse" ] && (yum install -y http://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm;
-                               yum -y update;
-                               yum install -y openstack-packstack python-netaddr)
-[ "$REPLY" == "skip" ] && echo Skipped!
-
-read -p "Do you want to Custom installation of RDO OpenStack(auto/y/n/exit)?"
+read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
 [ "$REPLY" == "auto" ] && (packstack --gen-answer-file=answer.txt;
                            sed -i -e s/^CONFIG_CINDER_INSTALL=.*/CONFIG_CINDER_INSTALL=n/ answer.txt;
                            sed -i -e s/^CONFIG_SWIFT_INSTALL=.*/CONFIG_SWIFT_INSTALL=n/ answer.txt;

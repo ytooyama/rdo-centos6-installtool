@@ -1,6 +1,6 @@
-#!/bin/bash -x
+#!/bin/bash
 
-#RDO Install Assist v.140728-2100
+#RDO Install Assist v.140801-1800
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
