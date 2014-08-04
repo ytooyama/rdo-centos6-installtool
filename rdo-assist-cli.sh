@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#RDO Install Assist v.140801-1825
+#RDO Install Assist v.140804-1300
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -41,4 +41,4 @@ read -p "Do you want to Set SELinux(y/n)?"
 [ "$REPLY" == "n" ] && echo Skipped!
 
 yum -y update
-echo "Need Reboot!"
+echo "Finished!"
