@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "RDO Install Assist v.140804-1300"
+echo "RDO Install Assist v.140805-0100"
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -99,7 +99,6 @@ read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
                            ##if "all-in-one install" then set "local",else "Multi" then Comment Out.
                            sed -i -e s/^CONFIG_NEUTRON_ML2_TYPE_DRIVERS=.*/CONFIG_NEUTRON_ML2_TYPE_DRIVERS=local/ answer.txt;
                            sed -i -e s/^CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=.*/CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local/ answer.txt;
-                           sed -i -e s/^CONFIG_NEUTRON_LB_TENANT_NETWORK_TYPE=.*/CONFIG_NEUTRON_LB_TENANT_NETWORK_TYPE=local/ answer.txt;
                            sed -i -e s/^CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=.*/CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=local/ answer.txt;
                            ## ex. The list of IP addresses of the server on which to install the
                            ## network service such as Nova network or Neutron
