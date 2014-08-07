@@ -18,7 +18,7 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
   - icehouse
 
 以下は近日対応予定です。
-- Scientific Linux 7(Alpha)
+- Scientific Linux 7(8/7現在Alpha版)
   - icehouse(予定...まだ動作しません)
 
 ###使いかた

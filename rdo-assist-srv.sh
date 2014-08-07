@@ -73,7 +73,6 @@ REPOSET
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
-
 #read function
 REPOSETIH
 ;;
@@ -133,6 +132,6 @@ read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
 [ "$REPLY" == "exit" ] && exit 0
 
 read -p "Do you want to System Update now(y/n)?"
-[ "$REPLY" == "y" ] && yum -y update
-[ "$REPLY" == "n" ] && echo "Skip the Updates!"
+  [ "$REPLY" == "y" ] && yum -y update
+  [ "$REPLY" == "n" ] && echo "Skip the Updates!"
 echo "Finished,Need Reboot!"
