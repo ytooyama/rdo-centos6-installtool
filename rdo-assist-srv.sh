@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-echo "RDO Install Assist v.140807-1000"
+echo "RDO Install Assist v.140807-1020"
 #
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
@@ -44,7 +44,8 @@ else
 fi
 }
 
-tmp=`cat /etc/issue | head -n 1`
+#tmp=`cat /etc/issue | head -n 1`
+tmp=`/etc/redhat-release | head -n 1`
 DIST=`echo $tmp`
 
 case $DIST in
