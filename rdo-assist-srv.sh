@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "RDO Install Assist v.140804-1300"
+echo "RDO Install Assist v.140807-1000"
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
 #http://geektrainee.hatenablog.jp/entry/2013/11/27/022633
@@ -75,6 +75,15 @@ REPOSET
 #read function
 REPOSETIH
 ;;
+"Scientific Linux release 7.0 rolling (Nitrogen)"|"Scientific Linux release 7.0 (Nitrogen)")
+echo "You use the Scientific 7."
+yum install net-tools traceroute
+read -p "Do you want to Copy the sysctl.conf(y/n)?"
+[ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
+[ "$REPLY" == "n" ] && echo Skipped!
+#read function
+REPOSETIH
+;;
 *)
   echo "You use the Unsupported Version."
   exit 0
@@ -122,5 +131,7 @@ read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
                         )
 [ "$REPLY" == "exit" ] && exit 0
 
-yum -y update
-echo "Need Reboot!"
+read -p "Do you want to System Update now(y/n)?"
+[ "$REPLY" == "y" ] && yum -y update
+[ "$REPLY" == "n" ] && echo "Skip the Updates!"
+echo "Finished,Need Reboot!"
