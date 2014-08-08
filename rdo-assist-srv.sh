@@ -44,8 +44,8 @@ else
 fi
 }
 
-tmp=`cat /etc/redhat-release | head -n 1`
-DIST=`echo $tmp`
+#Check OSVersion
+DIST=`cat /etc/issue | head -n 1`
 
 case $DIST in
 "CentOS release 6.5 (Final)")
