@@ -44,8 +44,7 @@ else
 fi
 }
 
-#tmp=`cat /etc/issue | head -n 1`
-tmp=`/etc/redhat-release | head -n 1`
+tmp=`cat /etc/redhat-release | head -n 1`
 DIST=`echo $tmp`
 
 case $DIST in
