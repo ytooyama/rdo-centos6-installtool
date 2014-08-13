@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-echo "RDO Install Assist v.140807-1020"
+echo "RDO Install Assist v.140813-2130"
 #
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
@@ -72,6 +72,15 @@ REPOSET
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
     [ "$REPLY" == "n" ] && echo Skipped!
+#read function
+REPOSETIH
+;;
+"Red Hat Enterprise Linux Client release 7.0 (Maipo)")
+echo "You use the RHEL7 Desktop."
+yum install net-tools traceroute
+read -p "Do you want to Copy the sysctl.conf(y/n)?"
+[ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
+[ "$REPLY" == "n" ] && echo Skipped!
 #read function
 REPOSETIH
 ;;
