@@ -18,6 +18,11 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
   - icehouse
 
 以下は近日対応予定です。
+- Red Hat Enterprise Linux 7
+  - icehouse(予定...まだ動作しません)
+- Red Hat Enterprise Linux 6.5
+  - havana(予定)
+  - icehouse(予定)
 - Scientific Linux 7(8/7現在Alpha版)
   - icehouse(予定...まだ動作しません)
 
