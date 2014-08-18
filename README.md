@@ -17,10 +17,6 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 - Fedora 20
   - icehouse
 
-以下は近日対応予定です。
-- Scientific Linux 7(8/7現在Alpha版)
-  - icehouse(予定...まだ動作しません)
-
 ###使いかた
 - OSをインストールしてyum updateを実施します。
 - IPアドレスを設定します｡
@@ -32,12 +28,12 @@ RDOでOpenStack環境を作るスクリプトです。ただ、公式の手順�
 # chkconfig NetworkManager off
 # chkconfig network on
 ```
-※Fedora 20やEL7ではNetworkManagerを使って構築したほうがうまくいくようです。
+※Fedora 20ではNetworkManagerを使って構築したほうがうまくいくようです。
 
 - リポジトリーからパッケージをダウンロードします｡
 
 ```
-# git clone -b master https://github.com/ytooyama/rdo-centos6-installtool.git
+# git clone -b v4.0 https://github.com/ytooyama/rdo-centos6-installtool.git
 ```
 -bオプションでバージョンを指定。最新版はmaster。
 
