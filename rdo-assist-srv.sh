@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-echo "RDO Install Assist v.140813-2130"
+echo "RDO Install Assist v.140819-0130"
 #
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
@@ -75,24 +75,6 @@ REPOSET
 #read function
 REPOSETIH
 ;;
-"Red Hat Enterprise Linux Client release 7.0 (Maipo)")
-echo "You use the RHEL7 Desktop."
-yum install net-tools traceroute
-read -p "Do you want to Copy the sysctl.conf(y/n)?"
-[ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
-[ "$REPLY" == "n" ] && echo Skipped!
-#read function
-REPOSETIH
-;;
-"Scientific Linux release 7.0 rolling (Nitrogen)"|"Scientific Linux release 7.0 (Nitrogen)")
-  echo "You use the Scientific 7."
-  yum install net-tools traceroute
-  read -p "Do you want to Copy the sysctl.conf(y/n)?"
-    [ "$REPLY" == "y" ] && (cat conf/source.txt >> /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
-    [ "$REPLY" == "n" ] && echo Skipped!
-#read function
-REPOSETIH
-;;
 *)
   echo "You use the Unsupported Version."
   exit 0
@@ -105,11 +87,15 @@ read -p "Do you want to Set SELinux(y/n)?"
 
 read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
 [ "$REPLY" == "auto" ] && (packstack --gen-answer-file=answer.txt;
+                           #HavanaとIcehouseではanswer-fileの内容が異なります。以下はIcehouseの例です。
+                           #Software Config
+                           sed -i -e s/^CONFIG_NAGIOS_INSTALL=.*/CONFIG_NAGIOS_INSTALL=n/ answer.txt;
                            sed -i -e s/^CONFIG_CINDER_INSTALL=.*/CONFIG_CINDER_INSTALL=n/ answer.txt;
                            sed -i -e s/^CONFIG_SWIFT_INSTALL=.*/CONFIG_SWIFT_INSTALL=n/ answer.txt;
-                           sed -i -e s/^CONFIG_NAGIOS_INSTALL=.*/CONFIG_NAGIOS_INSTALL=n/ answer.txt;
                            sed -i -e s/^CONFIG_CEILOMETER_INSTALL=.*/CONFIG_CEILOMETER_INSTALL=n/ answer.txt;
+                           #Set the admin Password.
                            sed -i -e s/^CONFIG_KEYSTONE_ADMIN_PW=.*/CONFIG_KEYSTONE_ADMIN_PW=admin/ answer.txt;
+                           #Network Config
                            sed -i -e s/^CONFIG_NOVA_COMPUTE_PRIVIF=.*/CONFIG_NOVA_COMPUTE_PRIVIF=eth1/ answer.txt;
                            sed -i -e s/^CONFIG_NOVA_NETWORK_PUBIF=.*/CONFIG_NOVA_NETWORK_PUBIF=eth0/ answer.txt;
                            sed -i -e s/^CONFIG_NOVA_NETWORK_PRIVIF=.*/CONFIG_NOVA_NETWORK_PRIVIF=eth1/ answer.txt;
@@ -118,10 +104,16 @@ read -p "Do you want to Customise installation of RDO OpenStack(auto/y/n/exit)?"
                            sed -i -e s/^CONFIG_NEUTRON_ML2_TYPE_DRIVERS=.*/CONFIG_NEUTRON_ML2_TYPE_DRIVERS=local/ answer.txt;
                            sed -i -e s/^CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=.*/CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local/ answer.txt;
                            sed -i -e s/^CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=.*/CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=local/ answer.txt;
+
                            ## ex. The list of IP addresses of the server on which to install the
                            ## network service such as Nova network or Neutron
                            ##if "all-in-one install" then Comment out,else "Multi" then set "IP Address".
                            #sed -i -e s/^CONFIG_NETWORK_HOSTS=.*/CONFIG_NETWORK_HOSTS=192.168.1.102/ answer.txt;
+
+                           # ex. The list of IP addresses of the server on which to install the Nova
+                           # compute service
+                           ##if "all-in-one install" then Comment out,else "Multi" then set "IP Address".
+                           #sed -i -e s/^CONFIG_COMPUTE_HOSTS=.*/CONFIG_COMPUTE_HOSTS=192.168.1.101/ answer.txt;
 
                            ##Run Packstack!
                            packstack --answer-file=answer.txt;
