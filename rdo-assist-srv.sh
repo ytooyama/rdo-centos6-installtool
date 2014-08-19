@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-echo "RDO Install Assist v.140819-0140"
+echo "RDO Install Assist v.4.0.140819-1920"
 #
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
@@ -33,15 +33,9 @@ function REPOSETIH
 ##Workaround see https://github.com/openstack/neutron/commit/a7da625571a5acb161246e62713da81526a8d86b
 function BUG1
 {
-if test $selver = "icehouse" ; then
-    sed -i -e "s/# Example: mechanism drivers/# Example: mechanism_drivers/g" /etc/neutron/plugins/ml2/ml2_conf.ini
-elif test $selver = "havana" ; then
-    echo "Skiped!"
-else
-    read -p "Do you want to Fix the ml2_conf.ini(y/n)?"
+read -p "Do you want to Fix the ml2_conf.ini(y/n)?"
       [ "$REPLY" == "y" ] && (sed -i -e "s/# Example: mechanism drivers/# Example: mechanism_drivers/g" /etc/neutron/plugins/ml2/ml2_conf.ini)
       [ "$REPLY" == "n" ] && echo Skipped!
-fi
 }
 
 #Check OSVersion
