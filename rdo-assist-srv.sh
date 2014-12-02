@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-echo "RDO Install Assist v.4.0.140819-1920"
+echo "RDO Install Assist v.4.1.141202-1700"
 #
 #
 # ディストリビューション名とバージョンを取得する(参考サイト)
@@ -42,8 +42,8 @@ read -p "Do you want to Fix the ml2_conf.ini(y/n)?"
 DIST=`cat /etc/redhat-release | head -n 1`
 
 case $DIST in
-"CentOS release 6.5 (Final)")
-  echo "You use the CentOS 6.5."
+"CentOS release 6.5 (Final)"|"CentOS release 6.6 (Final)")
+  echo "You use the CentOS 6.6."
   yum install traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
@@ -51,8 +51,8 @@ case $DIST in
 #read function
 REPOSET
 ;;
-"Scientific Linux release 6.4 (Carbon)"|"Scientific Linux release 6.5 (Carbon)")
-  echo "You use the Scientific 6.4 or 6.5."
+"Scientific Linux release 6.4 (Carbon)"|"Scientific Linux release 6.5 (Carbon)"|"Scientific Linux release 6.6 (Carbon)")
+  echo "You use the Scientific 6.x."
   yum install traceroute
   read -p "Do you want to Copy the sysctl.conf(y/n)?"
     [ "$REPLY" == "y" ] && (cp conf/sysctl.conf /etc/sysctl.conf;sysctl -e -p /etc/sysctl.conf)
@@ -78,7 +78,7 @@ read -p "Do you want to Copy the sysctl.conf(y/n)?"
 #read function
 REPOSETIH
 ;;
-"Scientific Linux release 7.0 rolling (Nitrogen)"|"Scientific Linux release 7.0 (Nitrogen)")
+"Scientific Linux release 7.0 (Nitrogen)")
 echo "You use the Scientific 7."
 yum install net-tools traceroute
 read -p "Do you want to Copy the sysctl.conf(y/n)?"
